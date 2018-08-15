@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:foo="http://cxf.apache.org/configuration/foo"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs" 
+	xmlns:soap="http://cxf.apache.org/bindings/soap"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://cxf.apache.org/bindings/soap
+	http://cxf.apache.org/schemas/configuration/soap.xsd
+	http://cxf.apache.org/jaxrs
+	http://cxf.apache.org/schemas/jaxrs.xsd">
+	
+	<!-- 这2行代码，不要动 -->
+	<import resource="classpath:META-INF/cxf/cxf.xml"></import>
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml"></import>
+
+	<!-- 发布rest风格的WEBService接口 -->
+	<jaxrs:server id="customerService" address="/customermag">
+		<jaxrs:serviceBeans>
+			<ref bean="customerWebServiceImpl"></ref>
+		</jaxrs:serviceBeans>
+	</jaxrs:server>
+	
+	<bean id="customerWebServiceImpl" class="org.framestudy.webservices.rest.impl.CustomerWebServiceImpl"></bean>
+
+</beans>
